@@ -1,6 +1,8 @@
 # wordle
 Manual wordle solver
 
+I call it 'manual' because the program cant't figure out anything on its' own; you must provide the information that the Wordle game tells you on each guess :^)
+
 ## Usage
 ```
 $ git clone https://github.com/lauchimoon/wordle.git
