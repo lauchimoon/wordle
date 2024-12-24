@@ -45,40 +45,44 @@ def choose_based_on(wordlist, information):
 
     return word
 
-words = open("dictionary.txt", "r")
-wordlist = [word.strip() for word in words]
-words.close()
+def main():
+    words = open("dictionary.txt", "r")
+    wordlist = [word.strip() for word in words]
+    words.close()
 
-word = random.choice(wordlist)
-information = {"wrong": [], "elsewhere": [], "correct": set()}
+    word = random.choice(wordlist)
+    information = {"wrong": [], "elsewhere": [], "correct": set()}
 
-while True:
-    print(f"try {word}")
+    while True:
+        print(f"try {word}")
 
-    # Get information about word inserted
-    print("which characters are incorrect?")
-    wrong_input = input("> ")
-    if wrong_input == "i win":
-        print("awesome!")
-        break
+        # Get information about word inserted
+        print("which characters are incorrect?")
+        wrong_input = input("> ")
+        if wrong_input == "i win":
+            print("awesome!")
+            break
 
-    if wrong_input != "all":
-        information["wrong"] += wrong_input.split()
-    else:
-        information["wrong"] += [c for c in word]
+        if wrong_input != "all":
+            information["wrong"] += wrong_input.split()
+        else:
+            information["wrong"] += [c for c in word]
 
-    print("which characters are somewhere else?")
-    elsewhere_input = input("> ")
-    if elsewhere_input != "none":
-        information["elsewhere"] += elsewhere_input.split()
+        print("which characters are somewhere else?")
+        elsewhere_input = input("> ")
+        if elsewhere_input != "none":
+            information["elsewhere"] += elsewhere_input.split()
 
-    print("which characters are correct and in which positions?")
-    correct_input = input("> ")
-    correct = []
-    if correct_input != "none":
-        for position in correct_input.split():
-            split = position.split(',')
-            information["correct"].add((split[0], int(split[1])))
+        print("which characters are correct and in which positions?")
+        correct_input = input("> ")
+        correct = []
+        if correct_input != "none":
+            for position in correct_input.split():
+                split = position.split(',')
+                information["correct"].add((split[0], int(split[1])))
 
-    wordlist = filter_words(wordlist, information)
-    word = choose_based_on(wordlist, information)
+        wordlist = filter_words(wordlist, information)
+        word = choose_based_on(wordlist, information)
+
+if __name__ == "__main__":
+    main()
