@@ -65,21 +65,20 @@ def main():
 
         if wrong_input != "all":
             information["wrong"] += wrong_input.split()
+            print("which characters are somewhere else?")
+            elsewhere_input = input("> ")
+            if elsewhere_input != "none":
+                information["elsewhere"] += elsewhere_input.split()
+
+            print("which characters are correct and in which positions?")
+            correct_input = input("> ")
+            correct = []
+            if correct_input != "none":
+                for position in correct_input.split():
+                    split = position.split(',')
+                    information["correct"].add((split[0], int(split[1])))
         else:
             information["wrong"] += [c for c in word]
-
-        print("which characters are somewhere else?")
-        elsewhere_input = input("> ")
-        if elsewhere_input != "none":
-            information["elsewhere"] += elsewhere_input.split()
-
-        print("which characters are correct and in which positions?")
-        correct_input = input("> ")
-        correct = []
-        if correct_input != "none":
-            for position in correct_input.split():
-                split = position.split(',')
-                information["correct"].add((split[0], int(split[1])))
 
         wordlist = filter_words(wordlist, information)
         word = choose_based_on(wordlist, information)
