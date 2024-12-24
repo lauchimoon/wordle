@@ -31,15 +31,9 @@ def indices_match(s, pairlist):
 def filter_words(wordlist, information):
     filtered = []
     for word in wordlist:
-        if information["elsewhere"]:
-            if not one_match(word, information["wrong"]) and \
-               one_match(word, information["elsewhere"]) and \
-               indices_match(word, information["correct"]):
-                   filtered.append(word)
-        elif not information["elsewhere"]:
-            if not one_match(word, information["wrong"]) and \
-               indices_match(word, information["correct"]):
-                   filtered.append(word)
+        if not one_match(word, information["wrong"]) and indices_match(word, information["correct"]):
+            if not information["elsewhere"] or one_match(word, information["elsewhere"]):
+                filtered.append(word)
 
     return filtered
 
