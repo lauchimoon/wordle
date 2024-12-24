@@ -64,8 +64,8 @@ while True:
     # Get information about word inserted
     print("which characters are incorrect?")
     wrong_input = input("> ")
-    if wrong_input == "none":
-        print("you win then!")
+    if wrong_input == "i win":
+        print("awesome!")
         break
 
     if wrong_input != "all":
